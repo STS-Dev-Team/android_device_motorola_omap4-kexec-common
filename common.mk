@@ -6,7 +6,10 @@ COMMON_FOLDER := device/motorola/omap4-kexec-common
 
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
-    $(COMMON_FOLDER)/prebuilt/etc/gps.conf:system/etc/gps.conf
+    $(COMMON_FOLDER)/prebuilt/bin/pdsbackup.sh:system/bin/pdsbackup.sh \
+    $(COMMON_FOLDER)/prebuilt/bin/wifical.sh:system/bin/wifical.sh \
+    $(COMMON_FOLDER)/prebuilt/etc/gps.conf:system/etc/gps.conf \
+    $(COMMON_FOLDER)/prebuilt/etc/wifi/wlan_fem.ini:system/etc/wifi/wlan_fem.ini
 
 # Device overlay
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_FOLDER)/overlay
@@ -244,7 +247,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     softap.interface=wlan0 \
     wifi.ap.interface=wlan0 \
-    wifi.supplicant_scan_interval=90
+    wifi.supplicant_scan_interval=90 \
+    persist.wlan.ti.calibrated=0
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.boot.safestrap.romslot=rom-slot1
